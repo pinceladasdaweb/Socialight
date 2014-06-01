@@ -1,0 +1,81 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html { font-size: 62.5% }
+
+body {
+    font-size: 16px;
+    font-size: 1.6rem;
+    background-color: #fafafa;
+    color: #353537;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 300;
+}
+
+header {
+    padding: 50px 0;
+    padding: 5rem 0;
+    background-color: #303746;
+    text-align: center;
+}
+
+main {
+    margin: 50px auto;
+    margin: 5rem auto;
+}
+
+.package-name {
+    font-size: 40px;
+    font-size: 4rem;
+    margin-bottom: 10px;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+    font-family: 'Cantata One', Georgia, Times, serif;
+    font-weight: 400;
+}
+
+.package-desc {
+    color: #AEB6C7;
+    font-size: 18px;
+    font-size: 1.8rem;
+}
+
+.share-url {
+    text-align: center;
+}
+
+.social {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.social .shares {
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+.share-buffer {
+    background-image: url('img/buffer.png');
+}
+
+.share-twitter {
+    background-image: url('img/twitter.png');
+}
+
+.share-facebook {
+    background-image: url('img/facebook.png');
+}
+
+.share-linkedin {
+    background-image: url('img/linkedin.png');
+}
+
+.share-gplus {
+    background-image: url('img/googleplus.png');
+}

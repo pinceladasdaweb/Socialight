@@ -1,0 +1,15 @@
+{
+    "name": "Socialight",
+    "description": "Get Social Network Share Counts with Vanilla JS",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pinceladasdaweb"
+    },
+    "author": "Pedro Rogerio",
+    "license": "MIT license",
+    "devDependencies": {
+        "grunt": "~0.4.4",
+        "grunt-contrib-uglify": "~0.3.2"
+    }
+}

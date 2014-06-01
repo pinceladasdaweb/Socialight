@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+    	<title>Socialight</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans:300,600">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+    	<header>
+    		<h1 class="package-name">Socialight</h1>
+    		<p class="package-desc">Get Social Network Share Counts with Vanilla JS</p>
+    	</header>
+
+    	<main>
+    		<p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/</p>
+    		<div class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
+
+    		<p class="share-url"><strong>URL:</strong> http://www.smashingmagazine.com/</p>
+    		<div class="social" data-url="http://www.smashingmagazine.com/"></div>
+
+    		<p class="share-url"><strong>URL:</strong> https://www.behance.net/</p>
+    		<div class="social" data-url="https://www.behance.net/"></div>
+    	</main>
+
+    	<script src="assets/js/socialight.js"></script>
+    	<script>
+            (function(window, document, undefined) {
+                Socialight.init({
+                    container: '.social',
+                    share: {
+                    	twitter: true,
+                    	facebook: true,
+                    	googlePlus: true,
+                    	linkedin: true,
+                    	buffer: true
+                    }
+                });
+            }(window, document));
+        </script>
+    </body>
+</html>
