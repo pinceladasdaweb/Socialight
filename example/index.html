@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-    	<title>Socialight</title>
+        <title>Socialight</title>
         <meta charset="utf-8">
         <script>
             if ('attachEvent' in document.documentElement) {
@@ -15,35 +15,53 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-    	<header>
-    		<h1 class="package-name">Socialight</h1>
-    		<p class="package-desc">Get Social Network Share Counts with Vanilla JS</p>
-    	</header>
+        <header>
+            <h1 class="package-name">Socialight</h1>
+            <p class="package-desc">Get Social Network Share Counts with Vanilla JS</p>
+        </header>
 
-    	<main>
-    		<p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/</p>
-    		<div class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
+        <main>
+            <p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/</p>
+            <div id="social1" class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
 
-    		<p class="share-url"><strong>URL:</strong> http://www.smashingmagazine.com/</p>
-    		<div class="social" data-url="http://www.smashingmagazine.com/"></div>
+            <p class="share-url"><strong>URL:</strong> http://www.smashingmagazine.com/</p>
+            <div id="social2" class="social" data-url="http://www.smashingmagazine.com/"></div>
 
-    		<p class="share-url"><strong>URL:</strong> https://www.behance.net/</p>
-    		<div class="social" data-url="https://www.behance.net/"></div>
-    	</main>
+            <p class="share-url"><strong>URL:</strong> https://www.behance.net/</p>
+            <div id="social3" class="social" data-url="https://www.behance.net/"></div>
+        </main>
 
-    	<script src="assets/js/socialight.js"></script>
-    	<script>
+        <script src="../src/promise.js"></script>
+        <script src="../src/socialight.js"></script>
+        <script src="../src/xhr.js"></script>
+        <script src="../src/twitter.js"></script>
+        <script src="../src/facebook.js"></script>
+        <script src="../src/linkedin.js"></script>
+        <script src="../src/buffer.js"></script>
+        <script src="../src/google-plus.js"></script>
+        <script>
             (function(window, document, undefined) {
-                Socialight.init({
-                    container: '.social',
-                    share: {
-                    	twitter: true,
-                    	facebook: true,
-                    	googlePlus: true,
-                    	linkedin: true,
-                    	buffer: true
-                    }
-                });
+                "use strict";
+
+                function SocialightFacade ($element) {
+                    var socialight = new Socialight({
+                            container: $element,
+                            url: $element.getAttribute("data-url")
+                        });
+
+                    socialight.add(new Twitter());
+                    socialight.add(new Facebook());
+                    socialight.add(new GooglePlus());
+                    socialight.add(new LinkedIn());
+                    socialight.add(new Buffer());
+
+                    socialight.draw();
+                }
+
+                SocialightFacade(document.getElementById("social1"));
+                SocialightFacade(document.getElementById("social2"));
+                SocialightFacade(document.getElementById("social3"));
+
             }(window, document));
         </script>
     </body>
