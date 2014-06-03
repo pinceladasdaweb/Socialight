@@ -63,7 +63,7 @@ Socialight.prototype = {
         this.leaf.push(leaf);
     },
     draw: function () {
-        var self    = this;
+        var self    = this,
             url     = self.url;
 
         self.leaf.forEach(function (each) {
