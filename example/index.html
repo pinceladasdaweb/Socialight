@@ -22,23 +22,25 @@
 
         <main>
             <p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/</p>
-            <div id="social1" class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
+            <div class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
 
             <p class="share-url"><strong>URL:</strong> http://www.smashingmagazine.com/</p>
-            <div id="social2" class="social" data-url="http://www.smashingmagazine.com/"></div>
+            <div class="social" data-url="http://www.smashingmagazine.com/"></div>
 
             <p class="share-url"><strong>URL:</strong> https://www.behance.net/</p>
-            <div id="social3" class="social" data-url="https://www.behance.net/"></div>
+            <div class="social" data-url="https://www.behance.net/"></div>
         </main>
-
+        <!--
         <script src="../src/promise.js"></script>
         <script src="../src/socialight.js"></script>
         <script src="../src/xhr.js"></script>
         <script src="../src/twitter.js"></script>
         <script src="../src/facebook.js"></script>
+        <script src="../src/google-plus.js"></script>
         <script src="../src/linkedin.js"></script>
         <script src="../src/buffer.js"></script>
-        <script src="../src/google-plus.js"></script>
+        -->
+        <script src="../build/socialight.min.js"></script>
         <script>
             (function(window, document, undefined) {
                 "use strict";
@@ -58,9 +60,9 @@
                     socialight.draw();
                 }
 
-                SocialightFacade(document.getElementById("social1"));
-                SocialightFacade(document.getElementById("social2"));
-                SocialightFacade(document.getElementById("social3"));
+                [].slice.call(document.querySelectorAll(".social")).forEach(function(each){
+                    SocialightFacade(each);
+                });
 
             }(window, document));
         </script>
