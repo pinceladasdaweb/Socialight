@@ -13,17 +13,27 @@ Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependancies
 
 ```javascript
 (function(window, document, undefined) {
-    Socialight.init({
-        container: '.social', //DOM node to attach to
-        share: {
-            // Social network to display counter
-            twitter: true,
-            facebook: true,
-            googlePlus: true,
-            linkedin: true,
-            buffer: true
-        }
+    "use strict";
+
+    function SocialightFacade ($element) {
+        var socialight = new Socialight({
+                container: $element,
+                url: $element.getAttribute("data-url")
+            });
+
+        socialight.add(new Twitter());
+        socialight.add(new Facebook());
+        socialight.add(new GooglePlus());
+        socialight.add(new LinkedIn());
+        socialight.add(new Buffer());
+
+        socialight.draw();
+    }
+
+    [].slice.call(document.querySelectorAll(".social")).forEach(function(each){
+        SocialightFacade(each);
     });
+
 }(window, document));
 ```
 The [`plus.php`](plus.php) file is responsible for making the request to return the data from Google+.

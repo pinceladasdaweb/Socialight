@@ -7,7 +7,16 @@ module.exports = function (grunt) {
             },
             src: {
                 files: {
-                    'build/socialight.min.js': ['src/socialight.js']
+                    'build/socialight.min.js': [
+                        'src/promise.js',
+                        'src/socialight.js',
+                        'src/xhr.js',
+                        'src/twitter.js',
+                        'src/facebook.js',
+                        'src/linkedin.js',
+                        'src/buffer.js',
+                        'src/google-plus.js'
+                    ]
                 }
             },
         }
