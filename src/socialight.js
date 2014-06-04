@@ -37,7 +37,7 @@ Socialight.prototype = {
 
             if(size <= number) {
                 number = Math.round(number*decPlaces/size)/decPlaces;
-                if((number == 1000) && (i < abbrev.length - 1)) {
+                if((number === 1000) && (i < abbrev.length - 1)) {
                     number = 1;
                     i++;
                 }
@@ -67,7 +67,7 @@ Socialight.prototype = {
             url     = self.url;
 
         self.leaf.forEach(function (each) {
-            var promise = each.request(self.url);
+            var promise = each.promise(self.url);
 
             promise.then(function (result) {
                 self.$container.appendChild(self._attach(self._abbrNum(result.count, 1), result.name).cloneNode(true));

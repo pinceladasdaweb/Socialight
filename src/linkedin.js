@@ -11,15 +11,14 @@ LinkedIn
 + Documentation: https://github.com/wbruno/Socialight
 */
 
-"use strict";
+(function (window) {
+  "use strict";
 
-var LinkedIn = function () {
-};
+    window.LinkedIn = function () {};
 
-LinkedIn.prototype = {
-    request: function (url) {
-        return new Promise(function(resolve, reject) {
-            this.endpoint  = "https://www.linkedin.com/countserv/count/share?url={url}".replace("{url}", url);
+    LinkedIn.prototype = {
+        _request: function (resolve, reject) {
+            this.endpoint  = "https://www.linkedin.com/countserv/count/share?url={url}".replace("{url}", this.url);
 
             xhr.jsonp(this.endpoint, function (data) {
                 resolve({
@@ -27,6 +26,10 @@ LinkedIn.prototype = {
                     name: "share-linkedin"
                 });
             });
-        });
-    }
-};
+        },
+        promise: function (url) {
+            this.url = url;
+            return new Promise(this._request.bind(this));
+        }
+    };
+}(window));
