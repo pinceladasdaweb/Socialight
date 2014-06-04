@@ -1,0 +1,10 @@
+{
+  "browser": true,
+  "eqeqeq": true,
+  "noarg": true,
+  "maxdepth": 2,
+  "globals" : {
+    "xhr": true,
+    "Promise": true
+  }
+}
