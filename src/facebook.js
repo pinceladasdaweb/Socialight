@@ -11,15 +11,14 @@ Facebook
 + Documentation: https://github.com/wbruno/Socialight
 */
 
-"use strict";
+(function (window) {
+  "use strict";
 
-var Facebook = function () {
-};
+    window.Facebook = function () {};
 
-Facebook.prototype = {
-    request: function (url) {
-        return new Promise(function(resolve, reject) {
-            this.endpoint  = "https://graph.facebook.com/?id={url}".replace("{url}", url);
+    Facebook.prototype = {
+        _request: function (resolve, reject) {
+            this.endpoint  = "https://graph.facebook.com/?id={url}".replace("{url}", this.url);
 
             xhr.jsonp(this.endpoint, function (data) {
                 resolve({
@@ -27,6 +26,10 @@ Facebook.prototype = {
                     name: "share-facebook"
                 });
             });
-        });
-    }
-};
+        },
+        promise: function (url) {
+            this.url = url;
+            return new Promise(this._request.bind(this));
+        }
+    };
+}(window));
