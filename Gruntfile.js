@@ -29,7 +29,7 @@ module.exports = function (grunt) {
             },
             src: {
                 files: {
-                    'build/socialight.min.js': ['src/*']
+                    'build/socialight.min.js': ['build/socialight.js']
                 }
             },
         }
