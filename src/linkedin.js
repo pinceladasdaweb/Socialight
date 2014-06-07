@@ -1,16 +1,3 @@
-/*
---------------------------------
-LinkedIn
---------------------------------
-+ Leaf LinkedIn for SocialLight Composite
-+ https://github.com/wbruno/Socialight
-+ version 0.0.1
-+ Copyright 2014 William Bruno
-+ Licensed under the MIT license
-
-+ Documentation: https://github.com/wbruno/Socialight
-*/
-
 (function (window) {
   "use strict";
 
