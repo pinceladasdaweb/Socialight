@@ -30,9 +30,11 @@ Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependancies
         socialight.draw();
     }
 
-    [].slice.call(document.querySelectorAll(".social")).forEach(function(each){
-        SocialightFacade(each);
-    });
+    var el = document.querySelectorAll(".social"), i, len;
+
+    for (i = 0, len = el.length; i < len; i++) {
+        SocialightFacade(el[i]);
+    }
 
 }(window, document));
 ```
