@@ -26,6 +26,7 @@ Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependancies
         socialight.add(new GooglePlus());
         socialight.add(new LinkedIn());
         socialight.add(new Buffer());
+        socialight.add(new Pinterest());
 
         socialight.draw();
     }
