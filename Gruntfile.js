@@ -4,7 +4,7 @@ var banner = '/* \n' +
             '-------------------------------- \n' +
             '+ Get Social Network Share Counts with Vanilla JS \n' +
             '+ https://github.com/pinceladasdaweb/Socialight \n' +
-            '+ version 0.0.3 \n' +
+            '+ version 0.0.4 \n' +
             '+ Copyright 2014 Pedro Rogerio \n' +
             '+ Licensed under the MIT license \n' +
             '\n' +
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 banner: banner,
             },
             dist: {
-                src: ['src/polyfill.js', 'src/promise.js', 'src/xhr.js', 'src/buffer.js', 'src/facebook.js', 'src/google-plus.js', 'src/linkedin.js', 'src/twitter.js', 'src/socialight.js'],
+                src: ['src/polyfill.js', 'src/promise.js', 'src/xhr.js', 'src/buffer.js', 'src/facebook.js', 'src/google-plus.js', 'src/linkedin.js', 'src/twitter.js', 'src/pinterest.js', 'src/socialight.js'],
                 dest: 'build/socialight.js',
             },
         },

@@ -56,6 +56,7 @@ main {
     background-position: center top;
     background-repeat: no-repeat;
     display: inline-block;
+    min-width: 60px;
     padding: 32px 16px;
     text-align: center;
 }
@@ -78,4 +79,8 @@ main {
 
 .share-gplus {
     background-image: url('img/googleplus.png');
+}
+
+.share-pinterest {
+    background-image: url('img/pinterest.png');
 }
