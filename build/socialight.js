@@ -157,7 +157,7 @@ var xhr = (function (window, document, undefined) {
 
     GooglePlus.prototype = {
         _request: function (resolve, reject) {
-            this.endpoint  = "../plus.php?url={url}".replace("{url}", this.url);
+            this.endpoint  = "./plus.php?url={url}".replace("{url}", this.url);
 
             xhr.json({url: this.endpoint}, function (data) {
                 resolve({
