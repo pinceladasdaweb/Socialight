@@ -4,7 +4,7 @@ var banner = '/* \n' +
             '-------------------------------- \n' +
             '+ Get Social Network Share Counts with Vanilla JS \n' +
             '+ https://github.com/pinceladasdaweb/Socialight \n' +
-            '+ version 0.0.4 \n' +
+            '+ version 0.0.5 \n' +
             '+ Copyright 2014 Pedro Rogerio \n' +
             '+ Licensed under the MIT license \n' +
             '\n' +
