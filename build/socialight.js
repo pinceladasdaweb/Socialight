@@ -4,7 +4,7 @@ Socialight
 -------------------------------- 
 + Get Social Network Share Counts with Vanilla JS 
 + https://github.com/pinceladasdaweb/Socialight 
-+ version 0.0.4 
++ version 0.0.5 
 + Copyright 2014 Pedro Rogerio 
 + Licensed under the MIT license 
 
