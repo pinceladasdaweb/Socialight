@@ -3,6 +3,9 @@
 
 ![](https://raw.github.com/pinceladasdaweb/Socialight/master/screenshot.png)
 
+## Demo
+View demo [here](http://www.pinceladasdaweb.com.br/blog/uploads/socialight/).
+
 ## How to use?
 In HTML, set the element that will be displayed counters, an example can be seen below:
 
