@@ -1,6 +1,6 @@
 var Socialight = function(options) {
     this.$container = options.container;
-    this.url        = options.url;
+    this.url        = options.url || location.href + '/';
     this.leaf       = [];
 };
 Socialight.prototype = {
