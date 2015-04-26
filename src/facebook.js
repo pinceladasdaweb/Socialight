@@ -9,7 +9,7 @@
 
             xhr.jsonp(this.endpoint, function (data) {
                 resolve({
-                    count: data.shares,
+                    count: data.shares || 0,
                     name: "share-facebook"
                 });
             });
