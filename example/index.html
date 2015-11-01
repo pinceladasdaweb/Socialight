@@ -10,7 +10,7 @@
             }
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans:300,600">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
@@ -18,20 +18,24 @@
         <header>
             <h1 class="package-name">Socialight</h1>
             <p class="package-desc">Get Social Network Share Counts with Vanilla JS</p>
+            <a class="package-url" href="https://github.com/pinceladasdaweb/Socialight" title="View on Github">View on Github</a>
         </header>
 
         <main>
+            <h2>Display all supported services</h2>
             <p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/blog/</p>
-            <div class='social' data-socialight-url='http://www.pinceladasdaweb.com.br/blog/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
+            <div data-socialight-url='http://www.pinceladasdaweb.com.br/blog/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
 
+            <h2>Customized order to display counters</h2>
             <p class="share-url"><strong>URL:</strong> http://www.smashingmagazine.com/</p>
-            <div class='social' data-socialight-url='http://www.smashingmagazine.com/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
+            <div data-socialight-url='http://www.smashingmagazine.com/' data-socialight-channels='["googleplus", "twitter", "facebook", "linkedin", "pinterest", "buffer"]'></div>
 
+            <h2>Display certain services</h2>
             <p class="share-url"><strong>URL:</strong> https://www.behance.net/</p>
-            <div class='social' data-socialight-url='https://www.behance.net/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
+            <div data-socialight-url='https://www.behance.net/' data-socialight-channels='["facebook", "twitter", "linkedin"]'></div>
         </main>
 
-        <script src="../src/socialight.js"></script>
+        <script src="../build/socialight.min.js"></script>
         <script>
             new Socialight();
         </script>
