@@ -21,44 +21,19 @@
         </header>
 
         <main>
-            <p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/</p>
-            <div class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
+            <p class="share-url"><strong>URL:</strong> http://www.pinceladasdaweb.com.br/blog/</p>
+            <div class='social' data-socialight-url='http://www.pinceladasdaweb.com.br/blog/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
 
             <p class="share-url"><strong>URL:</strong> http://www.smashingmagazine.com/</p>
-            <div class="social" data-url="http://www.smashingmagazine.com/"></div>
+            <div class='social' data-socialight-url='http://www.smashingmagazine.com/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
 
             <p class="share-url"><strong>URL:</strong> https://www.behance.net/</p>
-            <div class="social" data-url="https://www.behance.net/"></div>
+            <div class='social' data-socialight-url='https://www.behance.net/' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
         </main>
-        
-        <script src="../build/socialight.min.js"></script>
+
+        <script src="../src/socialight.js"></script>
         <script>
-            (function(window, document, undefined) {
-                "use strict";
-
-                function SocialightFacade ($element) {
-                    var socialight = new Socialight({
-                            container: $element,
-                            url: $element.getAttribute("data-url")
-                        });
-
-                    socialight.add(new Twitter());
-                    socialight.add(new Facebook());
-                    socialight.add(new GooglePlus());
-                    socialight.add(new LinkedIn());
-                    socialight.add(new Buffer());
-                    socialight.add(new Pinterest());
-
-                    socialight.draw();
-                }
-
-                var el = document.querySelectorAll(".social"), i, len;
-
-                for (i = 0, len = el.length; i < len; i++) {
-                    SocialightFacade(el[i]);
-                }
-
-            }(window, document));
+            new Socialight();
         </script>
     </body>
 </html>

@@ -48,39 +48,41 @@ main {
 }
 
 .social {
+    height: 70px;
     margin-bottom: 35px;
     text-align: center;
 }
 
-.social .shares {
+[data-socialight-channel] {
     background-position: center top;
     background-repeat: no-repeat;
     display: inline-block;
+    min-height: 60px;
     min-width: 60px;
-    padding: 32px 16px;
+    padding: 32px 16px 0;
     text-align: center;
 }
 
-.share-buffer {
+[data-socialight-channel='buffer'] {
     background-image: url('img/buffer.png');
 }
 
-.share-twitter {
+[data-socialight-channel='twitter'] {
     background-image: url('img/twitter.png');
 }
 
-.share-facebook {
+[data-socialight-channel='facebook'] {
     background-image: url('img/facebook.png');
 }
 
-.share-linkedin {
+[data-socialight-channel='linkedin'] {
     background-image: url('img/linkedin.png');
 }
 
-.share-gplus {
+[data-socialight-channel='googleplus'] {
     background-image: url('img/googleplus.png');
 }
 
-.share-pinterest {
+[data-socialight-channel='pinterest'] {
     background-image: url('img/pinterest.png');
 }
