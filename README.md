@@ -60,3 +60,7 @@ Check [Releases](https://github.com/pinceladasdaweb/Socialight/releases) for det
 
 ## License
 [MIT](LICENSE)
+
+## To do
+
+- [ ] Add option to share on social networks
