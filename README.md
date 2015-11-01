@@ -3,49 +3,60 @@
 
 ![](https://raw.github.com/pinceladasdaweb/Socialight/master/screenshot.png)
 
-## Demo
-View demo [here](http://www.pinceladasdaweb.com.br/blog/uploads/socialight/).
+## What is it?
+
+Socialight get Social Network Share Counts on demand. Specify the url and social networks to display counters, the rest is magic. [Demo](http://www.pinceladasdaweb.com.br/blog/uploads/socialight/).
+
+## Getting Started
+
+```bash
+# Get the latest snapshot
+$ git clone git@github.com:pinceladasdaweb/Socialight.git
+```
 
 ## How to use?
+
 In HTML, set the element that will be displayed counters, an example can be seen below:
 
 ```html
-<div class="social" data-url="http://www.pinceladasdaweb.com.br/"></div>
+<div data-socialight-url='YOUR-URL' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
 ```
-Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependancies. Include the [`socialight.min.js`](build/socialight.min.js) in the footer of your page and initialise it:
 
-```javascript
-(function(window, document, undefined) {
-    "use strict";
+Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependencies. Include the [`socialight.min.js`](build/socialight.min.js) before your ```</body>``` tag and initialise it:
 
-    function SocialightFacade ($element) {
-        var socialight = new Socialight({
-                container: $element,
-                url: $element.getAttribute("data-url")
-            });
-
-        socialight.add(new Twitter());
-        socialight.add(new Facebook());
-        socialight.add(new GooglePlus());
-        socialight.add(new LinkedIn());
-        socialight.add(new Buffer());
-        socialight.add(new Pinterest());
-
-        socialight.draw();
-    }
-
-    var el = document.querySelectorAll(".social"), i, len;
-
-    for (i = 0, len = el.length; i < len; i++) {
-        SocialightFacade(el[i]);
-    }
-
-}(window, document));
+```html
+<script src="path/to/socialight.min.js"></script>
+<script>
+    new Socialight();
+</script>
 ```
-The [`plus.php`](plus.php) file is responsible for making the request to return the data from Google+.
 
-## Browser support
-IE8+ and modern browsers.
+## Options
+
+The script expect the following values:
+
+| Value                              | Description                                                 |
+| ---------------------------------- |:-----------------------------------------------------------:|
+| **data-socialight-url**            | The URL to get share counts                                 |
+| **data-socialight-channels**       | Social networks to display share counts                     |
+
+## Supported services
+
+Socialight support the following services: Facebook, Twitter, Google+, Linkedin, Pinterest and Buffer
+
+##Browser Support
+
+![IE](https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png) | ![Chrome](https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png) | ![Firefox](https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png) | ![Opera](https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png) | ![Safari](https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png)
+--- | --- | --- | --- | --- |
+IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
+
+## Contributing
+
+Check [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
+
+## History
+
+Check [Releases](https://github.com/pinceladasdaweb/Socialight/releases) for detailed changelog.
 
 ## License
-Socialight is licensed under the MIT License.
+[MIT](LICENSE)
