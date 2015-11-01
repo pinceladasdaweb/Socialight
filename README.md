@@ -31,6 +31,16 @@ Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependencies
 </script>
 ```
 
+Loading Socialight via AMD (require.js):
+
+```html
+<script>
+require(["path/to/socialight.min.js"], function(Socialight) {
+    new Socialight();
+});
+</script>
+```
+
 ## Options
 
 The script expect the following values:
