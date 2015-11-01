@@ -11,6 +11,38 @@
     }
 }(this, function () {
     "use strict";
+
+    if (!Array.prototype.indexOf) {
+        Array.prototype.indexOf = function (elem, startFrom) {
+            var i;
+
+            startFrom = startFrom || 0;
+
+            if (startFrom > this.length) {
+                return -1;
+            }
+
+            for (i = 0; i < this.length; i += 1) {
+                if (this[i] === elem && startFrom <= i) {
+                    return i;
+                } else if (this[i] === elem && startFrom > i) {
+                    return -1;
+                }
+            }
+
+            return -1;
+        };
+    }
+
+    if (!(Function.prototype.hasOwnProperty('bind'))) {
+        Function.prototype.bind = function () {
+            var fn = this, context = arguments[0], args = Array.prototype.slice.call(arguments, 1);
+            return function () {
+                return fn.apply(context, args.concat(Array.prototype.slice.call(arguments)));
+            };
+        };
+    }
+
     var Socialight = function () {
         if (!this || !(this instanceof Socialight)) {
             return new Socialight();
