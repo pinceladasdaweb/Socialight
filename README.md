@@ -43,7 +43,7 @@ require(["path/to/socialight.min.js"], function(Socialight) {
 
 ## Options
 
-The script expect the following values:
+The script expect the following attributes in the html tag:
 
 | Value                              | Description                                                 |
 | ---------------------------------- |:-----------------------------------------------------------:|
