@@ -1,5 +1,5 @@
 /*jslint browser: true, debug: true*/
-/*global define, module, exports*/
+/*global define, module, exports, console*/
 (function (root, factory) {
     "use strict";
     if (typeof define === 'function' && define.amd) {
@@ -135,11 +135,24 @@
         isInArray: function (array, search) {
             return array.indexOf(search) >= 0;
         },
+        isJson: function (jsonString) {
+            try {
+                var o = JSON.parse(jsonString);
+
+                if (o && typeof o === "object" && o !== null) {
+                    return o;
+                }
+            } catch (e) {
+                console.log('%c You must pass a valid JSON in attribute "data-socialight-url". View a example here: https://github.com/pinceladasdaweb/Socialight/blob/master/example/index.html#L27', 'background: red; color: white');
+            }
+
+            return false;
+        },
         createChannels: function () {
             var channels, span, i, j, k, len;
 
             for (i = 0, len = this.container.length; i < len; i += 1) {
-                channels = JSON.parse(this.container[i].getAttribute('data-socialight-channels'));
+                channels = this.isJson(this.container[i].getAttribute('data-socialight-channels'));
 
                 for (j = 0, k = channels.length; j < k; j += 1) {
                     if (this.isInArray(this.channels, channels[j])) {
