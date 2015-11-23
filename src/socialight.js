@@ -49,7 +49,7 @@
         }
 
         this.container = document.querySelectorAll('[data-socialight-url]');
-        this.channels  = ['facebook', 'twitter', 'linkedin', 'googleplus', 'pinterest', 'buffer'];
+        this.channels  = ['facebook','linkedin', 'googleplus', 'pinterest', 'buffer'];
 
         this.ready();
     };
@@ -175,17 +175,6 @@
                 }.bind(this));
             }.bind(this));
         },
-        getCounterTwitter: function () {
-            var matches = document.querySelectorAll('[data-socialight-channel="twitter"]'), url;
-
-            this.each(matches, function (match) {
-                url = match.parentNode.getAttribute('data-socialight-url');
-
-                this.jsonp('https://cdn.api.twitter.com/1/urls/count.json?url=' + url, function (data) {
-                    match.innerHTML = this.abbrNum(data.count, 1);
-                }.bind(this));
-            }.bind(this));
-        },
         getCounterGooglePlus: function () {
             var matches = document.querySelectorAll('[data-socialight-channel="googleplus"]'), url, data;
 
@@ -246,7 +235,6 @@
         },
         getCounters: function () {
             this.getCounterFb();
-            this.getCounterTwitter();
             this.getCounterGooglePlus();
             this.getCounterLinkedin();
             this.getCounterBuffer();
