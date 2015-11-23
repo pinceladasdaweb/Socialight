@@ -7,6 +7,10 @@
 
 Socialight get Social Network Share Counts on demand. Specify the url and social networks to display counters, the rest is magic. [Demo](http://www.pinceladasdaweb.com.br/blog/uploads/socialight/).
 
+#### And Twitter?
+
+Please, read [here](https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform).
+
 ## Getting Started
 
 ```bash
@@ -19,7 +23,7 @@ $ git clone git@github.com:pinceladasdaweb/Socialight.git
 In HTML, set the element that will be displayed counters, an example can be seen below:
 
 ```html
-<div data-socialight-url='YOUR-URL' data-socialight-channels='["facebook", "twitter", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
+<div data-socialight-url='YOUR-URL' data-socialight-channels='["facebook", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
 ```
 
 Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependencies. Include the [`socialight.min.js`](build/socialight.min.js) before your ```</body>``` tag and initialise it:
@@ -56,7 +60,7 @@ Socialight support the following services: Facebook, Twitter, Google+, Linkedin,
 
 ##Browser Support
 
-![IE](https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png) | ![Chrome](https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png) | ![Firefox](https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png) | ![Opera](https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png) | ![Safari](https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png)
+![IE](https://raw.githubusercontent.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/safari/safari_48x48.png)
 --- | --- | --- | --- | --- |
 IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
