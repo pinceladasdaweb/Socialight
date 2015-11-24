@@ -62,7 +62,7 @@
             xhttp.setRequestHeader('Content-Type', 'application/json');
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4) {
-                    if ((this.status >= 200 && this.status < 300) || xhr.status === 304) {
+                    if ((this.status >= 200 && this.status < 300) || this.status === 304) {
                         var response = '';
                         try {
                             response = JSON.parse(this.responseText);
