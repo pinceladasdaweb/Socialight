@@ -1,7 +1,7 @@
 {
     "name": "Socialight",
     "description": "Get Social Network Share Counts with Vanilla JS",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "private": true,
     "author": "Pedro Rogério",
     "scripts": {
