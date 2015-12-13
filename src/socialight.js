@@ -60,6 +60,8 @@
 
             xhttp.open('POST', path, true);
             xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.setRequestHeader('Content-length', data.length);
+            xhttp.setRequestHeader('Connection', 'close');
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4) {
                     if ((this.status >= 200 && this.status < 300) || this.status === 304) {
@@ -164,11 +166,14 @@
                 }
             }
         },
+        getUrl: function (el) {
+            return el.parentNode.getAttribute('data-socialight-url');
+        },
         getCounterFb: function () {
             var matches = document.querySelectorAll('[data-socialight-channel="facebook"]'), url;
 
             this.each(matches, function (match) {
-                url = match.parentNode.getAttribute('data-socialight-url');
+                url = this.getUrl(match);
 
                 this.jsonp('https://graph.facebook.com/?id=' + url, function (data) {
                     match.innerHTML = this.abbrNum(data.shares, 1);
@@ -179,7 +184,7 @@
             var matches = document.querySelectorAll('[data-socialight-channel="googleplus"]'), url, data;
 
             this.each(matches, function (match) {
-                url  = match.parentNode.getAttribute('data-socialight-url');
+                url  = this.getUrl(match);
                 data = JSON.stringify({
                     'method': 'pos.plusones.get',
                     'id': url,
@@ -204,7 +209,7 @@
             var matches = document.querySelectorAll('[data-socialight-channel="linkedin"]'), url;
 
             this.each(matches, function (match) {
-                url = match.parentNode.getAttribute('data-socialight-url');
+                url = this.getUrl(match);
 
                 this.jsonp('https://www.linkedin.com/countserv/count/share?url=' + url, function (data) {
                     match.innerHTML = this.abbrNum(data.count, 1);
@@ -215,7 +220,7 @@
             var matches = document.querySelectorAll('[data-socialight-channel="buffer"]'), url;
 
             this.each(matches, function (match) {
-                url = match.parentNode.getAttribute('data-socialight-url');
+                url = this.getUrl(match);
 
                 this.jsonp('https://api.bufferapp.com/1/links/shares.json?url=' + url, function (data) {
                     match.innerHTML = this.abbrNum(data.shares, 1);
@@ -226,7 +231,7 @@
             var matches = document.querySelectorAll('[data-socialight-channel="pinterest"]'), url;
 
             this.each(matches, function (match) {
-                url = match.parentNode.getAttribute('data-socialight-url');
+                url = this.getUrl(match);
 
                 this.jsonp('https://api.pinterest.com/v1/urls/count.json?&url=' + url, function (data) {
                     match.innerHTML = this.abbrNum(data.count, 1);
