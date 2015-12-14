@@ -55,25 +55,22 @@
     };
 
     Socialight.prototype = {
-        post: function (path, data, callback) {
+        post: function (path, data, success, fail) {
             var xhttp = new XMLHttpRequest();
 
             xhttp.open('POST', path, true);
+            xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             xhttp.setRequestHeader('Content-Type', 'application/json');
             xhttp.setRequestHeader('Content-length', data.length);
             xhttp.setRequestHeader('Connection', 'close');
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4) {
                     if ((this.status >= 200 && this.status < 300) || this.status === 304) {
-                        var response = '';
-                        try {
-                            response = JSON.parse(this.responseText);
-                        } catch (err) {
-                            response = this.responseText;
-                        }
-                        callback.call(window, response);
+                        var response = JSON.parse(this.responseText);
+
+                        success.call(this, response);
                     } else {
-                        throw new Error(this.status + " - " + this.statusText);
+                        fail.call(this, this.responseText);
                     }
                 }
             };
@@ -202,7 +199,9 @@
 
                 this.post('https://clients6.google.com/rpc', data, function (data) {
                     match.innerHTML = this.abbrNum(data.result.metadata.globalCounts.count, 1);
-                }.bind(this));
+                }.bind(this), function (err) {
+                    console.log(err)
+                });
             }.bind(this));
         },
         getCounterLinkedin: function () {
