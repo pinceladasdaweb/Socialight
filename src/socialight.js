@@ -147,6 +147,16 @@
 
             return false;
         },
+        template: function (s, d) {
+            var p;
+
+            for (p in d) {
+                if (d.hasOwnProperty(p)) {
+                    s = s.replace(new RegExp('{' + p + '}', 'g'), d[p]);
+                }
+            }
+            return s;
+        },
         createChannels: function () {
             var channels, span, i, j, k, len;
 
@@ -155,10 +165,12 @@
 
                 for (j = 0, k = channels.length; j < k; j += 1) {
                     if (this.isInArray(this.channels, channels[j])) {
-                        span = document.createElement('span');
-                        span.setAttribute('data-socialight-channel', channels[j]);
+                        span = this.template(
+                            '<span data-socialight-channel="{channel}"></span>', {
+                                channel: channels[j]
+                            });
 
-                        this.container[i].appendChild(span).cloneNode(true);
+                        this.container[i].insertAdjacentHTML('beforeend', span);
                     }
                 }
             }
