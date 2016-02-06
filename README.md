@@ -9,7 +9,7 @@ Socialight get Social Network Share Counts on demand. Specify the url and social
 
 #### And Twitter?
 
-Please, read [here](https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform).
+Twitter removed share counts, please, read [here](https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform).
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ $ git clone git@github.com:pinceladasdaweb/Socialight.git
 In HTML, set the element that will be displayed counters, an example can be seen below:
 
 ```html
-<div data-socialight-url='YOUR-URL' data-socialight-channels='["facebook", "googleplus", "linkedin", "buffer", "pinterest"]'></div>
+<div data-socialight-url='YOUR-URL' data-socialight-title='YOUR-TITLE' data-socialight-text='YOUR-TEXT' data-socialight-image='YOUR-IMAGE' data-socialight-channels='["facebook", "twitter" "googleplus", "linkedin", "buffer", "pinterest"]'></div>
 ```
 
 Socialight is a [Vanilla JS](http://vanilla-js.com/) plugin with no dependencies. Include the [`socialight.min.js`](build/socialight.min.js) before your ```</body>``` tag and initialise it:
@@ -51,7 +51,10 @@ The script expect the following attributes in the html tag:
 
 | Value                              | Description                                                 |
 | ---------------------------------- |:-----------------------------------------------------------:|
-| **data-socialight-url**            | The URL to get share counts                                 |
+| **data-socialight-url**            | The URL to share and get share counts                       |
+| **data-socialight-title**          | The title to share                                          |
+| **data-socialight-text**           | The description link to share                               |
+| **data-socialight-image**          | The image url to share                                      |
 | **data-socialight-channels**       | Social networks to display share counts                     |
 
 ## Supported services
@@ -74,7 +77,3 @@ Check [Releases](https://github.com/pinceladasdaweb/Socialight/releases) for det
 
 ## License
 [MIT](LICENSE)
-
-## To do
-
-- [ ] Add option to share on social networks
