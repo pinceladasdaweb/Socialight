@@ -49,7 +49,7 @@
         }
 
         this.container = document.querySelectorAll('[data-socialight-url]');
-        this.channels  = ['facebook','linkedin', 'googleplus', 'pinterest', 'buffer'];
+        this.channels  = ['facebook', 'twitter', 'linkedin', 'googleplus', 'pinterest', 'buffer'];
 
         this.ready();
     };
@@ -157,49 +157,79 @@
             }
             return s;
         },
+        getAttributes: function (el) {
+            return {
+                url:   encodeURIComponent(el.parentNode.getAttribute('data-socialight-url')),
+                title: encodeURIComponent(el.parentNode.getAttribute('data-socialight-title')),
+                text:  encodeURIComponent(el.parentNode.getAttribute('data-socialight-text')),
+                image: encodeURIComponent(el.parentNode.getAttribute('data-socialight-image'))
+            }
+        },
+        popup: function(el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (e.target && e.target.nodeName === 'A') {
+                    window.open(e.target.href, '', 'toolbar=0,status=0,scrollbars=0,width=680,height=480');
+                }
+            });
+        },
         createChannels: function () {
-            var channels, span, i, j, k, len;
+            var channels, shareUrl, a, i, j, k, len;
 
             for (i = 0, len = this.container.length; i < len; i += 1) {
                 channels = this.isJson(this.container[i].getAttribute('data-socialight-channels'));
+                shareUrl = this.container[i].getAttribute('data-socialight-url');
+
+                this.popup(this.container[i]);
 
                 for (j = 0, k = channels.length; j < k; j += 1) {
                     if (this.isInArray(this.channels, channels[j])) {
-                        span = this.template(
-                            '<span data-socialight-channel="{channel}"></span>', {
-                                channel: channels[j]
+                        a = this.template(
+                            '<a data-socialight-channel="{channel}" data-socialight-url="{url}"></a>', {
+                                channel: channels[j],
+                                url: shareUrl
                             });
 
-                        this.container[i].insertAdjacentHTML('beforeend', span);
+                        this.container[i].insertAdjacentHTML('beforeend', a);
                     }
                 }
             }
         },
-        getUrl: function (el) {
-            return el.parentNode.getAttribute('data-socialight-url');
-        },
-        getCounterFb: function () {
-            var matches = document.querySelectorAll('[data-socialight-channel="facebook"]'), url;
+        facebook: function () {
+            var matches = document.querySelectorAll('[data-socialight-channel="facebook"]'), attrs;
 
             this.each(matches, function (match) {
-                url = this.getUrl(match);
+                attrs = this.getAttributes(match);
 
-                this.jsonp('https://graph.facebook.com/?id=' + url, function (data) {
-                    match.innerHTML = this.abbrNum(data.shares, 1);
+                match.setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + attrs.url);
+
+                this.jsonp('https://graph.facebook.com/?id=' + attrs.url, function (data) {
+                    match.textContent = this.abbrNum(data.shares, 1);
                 }.bind(this));
             }.bind(this));
         },
-        getCounterGooglePlus: function () {
-            var matches = document.querySelectorAll('[data-socialight-channel="googleplus"]'), url, data;
+        twitter: function () {
+            var matches = document.querySelectorAll('[data-socialight-channel="twitter"]'), attrs;
 
             this.each(matches, function (match) {
-                url  = this.getUrl(match);
-                data = JSON.stringify({
+                attrs = this.getAttributes(match);
+
+                match.setAttribute('href', 'https://twitter.com/share?url=' + attrs.url + '&text=' + attrs.title);
+                match.textContent = 'Tweet';
+            }.bind(this));
+        },
+        googlePlus: function () {
+            var matches = document.querySelectorAll('[data-socialight-channel="googleplus"]'), attrs, data;
+
+            this.each(matches, function (match) {
+                attrs = this.getAttributes(match);
+                data  = JSON.stringify({
                     'method': 'pos.plusones.get',
-                    'id': url,
+                    'id': decodeURIComponent(attrs.url),
                     'params': {
                         'nolog': true,
-                        'id': url,
+                        'id': decodeURIComponent(attrs.url),
                         'source': 'widget',
                         'userId': '@viewer',
                         'groupId': '@self'
@@ -209,52 +239,61 @@
                     'apiVersion': 'v1'
                 });
 
+                match.setAttribute('href', 'https://plus.google.com/share?url=' + attrs.url);
+
                 this.post('https://clients6.google.com/rpc', data, function (data) {
-                    match.innerHTML = this.abbrNum(data.result.metadata.globalCounts.count, 1);
+                    match.textContent = this.abbrNum(data.result.metadata.globalCounts.count, 1);
                 }.bind(this), function (err) {
                     console.log(err)
                 });
             }.bind(this));
         },
-        getCounterLinkedin: function () {
-            var matches = document.querySelectorAll('[data-socialight-channel="linkedin"]'), url;
+        linkedin: function () {
+            var matches = document.querySelectorAll('[data-socialight-channel="linkedin"]'), attrs;
 
             this.each(matches, function (match) {
-                url = this.getUrl(match);
+                attrs = this.getAttributes(match);
 
-                this.jsonp('https://www.linkedin.com/countserv/count/share?url=' + url, function (data) {
-                    match.innerHTML = this.abbrNum(data.count, 1);
+                match.setAttribute('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + attrs.url + '&title=' + attrs.title + '&summary=' + attrs.text + '&source=' + attrs.image);
+
+                this.jsonp('https://www.linkedin.com/countserv/count/share?url=' + attrs.url, function (data) {
+                    match.textContent = this.abbrNum(data.count, 1);
                 }.bind(this));
             }.bind(this));
         },
-        getCounterBuffer: function () {
-            var matches = document.querySelectorAll('[data-socialight-channel="buffer"]'), url;
+        buffer: function () {
+            var matches = document.querySelectorAll('[data-socialight-channel="buffer"]'), attrs;
 
             this.each(matches, function (match) {
-                url = this.getUrl(match);
+                attrs = this.getAttributes(match);
 
-                this.jsonp('https://api.bufferapp.com/1/links/shares.json?url=' + url, function (data) {
-                    match.innerHTML = this.abbrNum(data.shares, 1);
+                match.setAttribute('href', 'https://buffer.com/add?url=' + attrs.url + '&text=' + attrs.title);
+
+                this.jsonp('https://api.bufferapp.com/1/links/shares.json?url=' + attrs.url, function (data) {
+                    match.textContent = this.abbrNum(data.shares, 1);
                 }.bind(this));
             }.bind(this));
         },
-        getCounterPinterest: function () {
-            var matches = document.querySelectorAll('[data-socialight-channel="pinterest"]'), url;
+        pinterest: function () {
+            var matches = document.querySelectorAll('[data-socialight-channel="pinterest"]'), attrs;
 
             this.each(matches, function (match) {
-                url = this.getUrl(match);
+                attrs = this.getAttributes(match);
 
-                this.jsonp('https://api.pinterest.com/v1/urls/count.json?&url=' + url, function (data) {
-                    match.innerHTML = this.abbrNum(data.count, 1);
+                match.setAttribute('href', 'https://pinterest.com/pin/create/button/?url=' + attrs.url + '&media=' + attrs.image + '&description=' + attrs.title);
+
+                this.jsonp('https://api.pinterest.com/v1/urls/count.json?&url=' + attrs.url, function (data) {
+                    match.textContent = this.abbrNum(data.count, 1);
                 }.bind(this));
             }.bind(this));
         },
         getCounters: function () {
-            this.getCounterFb();
-            this.getCounterGooglePlus();
-            this.getCounterLinkedin();
-            this.getCounterBuffer();
-            this.getCounterPinterest();
+            this.facebook();
+            this.twitter();
+            this.googlePlus();
+            this.linkedin();
+            this.buffer();
+            this.pinterest();
         },
         ready: function () {
             this.createChannels();
