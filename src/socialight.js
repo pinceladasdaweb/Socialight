@@ -12,6 +12,40 @@
 }(this, function () {
     "use strict";
 
+    if (!Array.prototype.includes) {
+        Array.prototype.includes = function(searchElement /*, fromIndex*/) {
+            var O   = Object(this),
+                len = parseInt(O.length) || 0,
+                currentElement, n, k;
+
+            if (len === 0) {
+                return false;
+            }
+
+            n = parseInt(arguments[1]) || 0;
+
+            if (n >= 0) {
+                k = n;
+            } else {
+                k = len + n;
+                
+                if (k < 0) {
+                    k = 0;
+                }
+            }
+
+            while (k < len) {
+                currentElement = O[k];
+
+                if (searchElement === currentElement || (searchElement !== searchElement && currentElement !== currentElement)) {
+                    return true;
+                }
+                k++;
+            }
+            return false;
+        };
+    }
+
     var Socialight = function () {
         if (!this || !(this instanceof Socialight)) {
             return new Socialight();
@@ -100,9 +134,6 @@
                 i += 1;
             }
         },
-        isInArray: function (array, search) {
-            return array.indexOf(search) >= 0;
-        },
         isJson: function (jsonString) {
             try {
                 var o = JSON.parse(jsonString);
@@ -153,7 +184,7 @@
                 this.popup(this.container[i]);
 
                 for (j = 0, k = channels.length; j < k; j += 1) {
-                    if (this.isInArray(this.channels, channels[j])) {
+                    if (this.channels.includes(channels[j])) {
                         a = this.template(
                             '<a data-socialight-channel="{channel}" data-socialight-url="{url}"></a>', {
                                 channel: channels[j],
