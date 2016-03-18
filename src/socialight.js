@@ -28,7 +28,7 @@
                 k = n;
             } else {
                 k = len + n;
-                
+
                 if (k < 0) {
                     k = 0;
                 }
@@ -81,7 +81,7 @@
             xhttp = null;
         },
         jsonp: function (url, callback, context) {
-            var name = 'jsonp_' + Math.round(100000 * Math.random()),
+            var name = 'jsonp_' + Date.now() + '_' + Math.ceil(Math.random() * 100000),
                 head,
                 script,
                 extScript;
