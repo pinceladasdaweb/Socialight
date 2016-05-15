@@ -80,11 +80,14 @@
             xhttp.send(data);
             xhttp = null;
         },
-        jsonp: function (url, callback, context) {
-            var name = 'jsonp_' + Date.now() + '_' + Math.ceil(Math.random() * 100000),
-                head,
-                script,
-                extScript;
+        jsonp: function (url, overwritten, callback, context) {
+            var name, head, script, extScript;
+
+            if (overwritten) {
+                name = this.randomString(30, "A");
+            } else {
+                name = 'jsonp_' + Date.now() + '_' + Math.ceil(Math.random() * 100000);
+            }
 
             head           = document.head || document.getElementsByTagName('head')[0];
             extScript      = document.createElement('script');
@@ -102,6 +105,32 @@
                 script = null;
                 delete this.name;
             }.bind(this);
+        },
+        /**
+         * RANDOM STRING GENERATOR
+         *
+         * Info:      http://stackoverflow.com/a/27872144/383904
+         * Use:       randomString(length [,"A"] [,"N"] );
+         * Default:   return a random alpha-numeric string
+         * Arguments: If you use the optional "A", "N" flags:
+         *            "A" (Alpha flag)   return random a-Z string
+         *            "N" (Numeric flag) return random 0-9 string
+         */
+        randomString: function(len, an) {
+            an = an && an.toLowerCase();
+
+            var str = "",
+                min = an === "a" ? 10 : 0,
+                max = an === "n" ? 10 : 62,
+                i   = 0,
+                r;
+
+            for (;i ++< len;) {
+                r = Math.random() * (max - min) + min << 0;
+                str += String.fromCharCode(r += r > 9 ? r < 36 ? 55 : 61 : 48);
+            }
+
+            return str;
         },
         abbrNum: function (number, decPlaces) {
             decPlaces = Math.pow(10, decPlaces);
@@ -204,7 +233,7 @@
 
                 match.setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + attrs.url);
 
-                this.jsonp('https://graph.facebook.com/?id=' + attrs.url, function (data) {
+                this.jsonp('https://graph.facebook.com/?id=' + attrs.url, false, function (data) {
                     match.textContent = this.abbrNum(data.shares, 1);
                 }.bind(this));
             }.bind(this));
@@ -256,7 +285,7 @@
 
                 match.setAttribute('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + attrs.url + '&title=' + attrs.title + '&summary=' + attrs.text + '&source=' + attrs.image);
 
-                this.jsonp('https://www.linkedin.com/countserv/count/share?url=' + attrs.url, function (data) {
+                this.jsonp('https://www.linkedin.com/countserv/count/share?url=' + attrs.url, true, function (data) {
                     match.textContent = this.abbrNum(data.count, 1);
                 }.bind(this));
             }.bind(this));
@@ -269,7 +298,7 @@
 
                 match.setAttribute('href', 'https://buffer.com/add?url=' + attrs.url + '&text=' + attrs.title);
 
-                this.jsonp('https://api.bufferapp.com/1/links/shares.json?url=' + attrs.url, function (data) {
+                this.jsonp('https://api.bufferapp.com/1/links/shares.json?url=' + attrs.url, false, function (data) {
                     match.textContent = this.abbrNum(data.shares, 1);
                 }.bind(this));
             }.bind(this));
@@ -282,7 +311,7 @@
 
                 match.setAttribute('href', 'https://pinterest.com/pin/create/button/?url=' + attrs.url + '&media=' + attrs.image + '&description=' + attrs.title);
 
-                this.jsonp('https://api.pinterest.com/v1/urls/count.json?&url=' + attrs.url, function (data) {
+                this.jsonp('https://api.pinterest.com/v1/urls/count.json?&url=' + attrs.url, false, function (data) {
                     match.textContent = this.abbrNum(data.count, 1);
                 }.bind(this));
             }.bind(this));
