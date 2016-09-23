@@ -204,7 +204,7 @@
                 match.setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + attrs.url);
 
                 this.jsonp('https://graph.facebook.com/?id=' + attrs.url, function (data) {
-                    match.textContent = this.abbrNum(data.shares, 1);
+                    match.textContent = this.abbrNum(data.share.share_count, 1);
                 }.bind(this));
             }.bind(this));
         },
