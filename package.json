@@ -1,23 +1,27 @@
 {
     "name": "Socialight",
     "description": "Get Social Network Share Counts with Vanilla JS",
-    "version": "2.2.2",
-    "private": true,
+    "version": "2.2.3",
     "author": "Pedro Rogério",
+    "license": "MIT",
+    "main": "build/socialight.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-        "grunt": "~1.0.0",
-        "grunt-contrib-watch": "~1.0.0",
-        "grunt-contrib-uglify": "~1.0.1"
+        "gulp": "~3.9.1",
+        "gulp-rename": "~1.2.2",
+        "gulp-uglify": "~2.0.0",
+        "gulp-header": "~1.8.8"
     },
-    "repository": "https://github.com/pinceladasdaweb/Socialight",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pinceladasdaweb/Socialight.git"
+    },
     "bugs": {
         "url": "https://github.com/pinceladasdaweb/Socialight/issues"
     },
-    "licenses": [{
-        "type": "MIT",
-        "url": "http://opensource.org/licenses/MIT"
-    }]
+    "keywords": [
+        "social"
+    ]
 }
